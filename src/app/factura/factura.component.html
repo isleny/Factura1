@@ -1,0 +1,51 @@
+<h1>Aplicacion facturas</h1>
+
+<p *ngIf="si" >Sin facturas registradas</p>
+
+
+<button type="submit" class="enlace" (click)="agregarFactura()" >Agregar factura </button><br>
+
+<div>
+  <div *ngFor="let factura of facturas; let i = index">
+      <br>
+      <p>Numero de factura: {{factura.id}} </p>
+      <p>Fecha y hora {{factura.fecha | date:"short"}} </p>
+      <br>
+       <p *ngIf="factura.items.length<= 0">Sin productos agregados</p>
+     
+
+
+      <label>Nombre</label>
+      <input 
+      type="text" 
+      placeholder="Escriba el nombre"
+      [(ngModel)]="nombre"
+      name="nombre"> 
+
+      <label>precio</label>
+      <input 
+      type="number" 
+      placeholder="Escriba el precio"
+      [(ngModel)]="precio"
+      name="precio"><br><br>
+
+      <button type="submit" class="btn btn-primary" (click)="agregarItem(i)" >Agregar producto </button>
+
+
+      <div *ngIf="factura.items.length > 0">
+          <ul *ngFor="let item of factura.items" >
+              <li>{{item.nombre}}  :  {{item.precio}}</li>
+          </ul>
+      </div>
+
+  </div>
+</div>
+
+<footer>
+  Diana Casanova<br>
+  Isleny Marin
+</footer>
+
+
+ 
+  
